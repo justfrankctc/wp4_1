@@ -1,0 +1,5 @@
+<apex:page standardController="Lead"  docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+  <apex:pageBlock >
+      <c:LeadWizardComponentPage4_1 />
+  </apex:pageBlock>
+</apex:page>
