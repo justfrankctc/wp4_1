@@ -1,5 +1,46 @@
-public class ControllerLWP4_1 {
-	public Lead lead{get;set;}
-    public Opportunity opp{get;set;}
-   
+/*
+     * Realizado por Francisco Rojas
+     * E-Mail : fjuarez@ctconsulting.com.mx
+     * Fecha de ultima modificacion : 26 / Febrero / 2016
+     */ 
+public class ControllerLWP4_1 {    
+    
+  	/***********************************************************************************
+     * Atributos 
+     * 
+     * Inicio bloque
+     ***********************************************************************************
+     */
+
+	public Opportunity opp     {get; set;}
+    public Task        task    {get; set;}
+    
+
+    /***********************************************************************************
+     * Atributos 
+     * 
+     * Fin bloque
+     ***********************************************************************************
+     */
+
+
+
+     /***********************************************************************************
+     * Constructor 
+     * Método constructor que instancia las clases Opportunity y Task
+     * Inicio bloque
+     ***********************************************************************************
+     */
+    public ControllerLWP4_1()
+    {   
+        newOpp  = new   Opportunity(); 
+        newTask = new   Task();
+    }
+    
+    /***********************************************************************************
+     * Constructor 
+     * 
+     * Fin bloque
+     ***********************************************************************************
+     */
 }

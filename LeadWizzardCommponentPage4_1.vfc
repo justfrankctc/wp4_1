@@ -17,9 +17,20 @@
             <!-- outputpanel general -->
             <apex:outputPanel id="LeadWizzard4_1">  
                 <div class="col-md-12">
-                    <c:Panel title="Checklist" iconName="list-alt"> 
+                    <c:Panel title="Checklist" iconName="list-alt">
+                        <c:Panel title="Tipo de persona" >
+                                <div class="row">
+                                    <apex:actionRegion >
+                                        <apex:actionFunction name="actualizaPanel" reRender="LeadWizzard,LeadWizzard4_1"/>
+                                        <c:PanelCell label="Tipo Persona" color="{!IF(Opp.Tipo_persona__c != '','has-success has-feedback','has-error')}">
+                                            <apex:inputField id="tipoPersona" styleClass="form-control" value="{!Opp.Tipo_persona__c}" onchange="actualizaPanel();" />
+                                        </c:PanelCell>
+                                    </apex:actionRegion>
+                                    
+                                </div>
+                        </c:Panel> 
                         <!-- div persona física -->
-                        <apex:outputPanel id="personaFisica">    
+                        <apex:outputPanel id="personaFisica" rendered="{!Opp.Tipo_persona__c == 'Física'}">    
                             <div id="personaFisica">
                                 <c:Panel title="Persona Física">
                                     <div class="row">
@@ -55,7 +66,7 @@
                         </apex:outputPanel>
 
                         <!-- div persona física con actividad empresarial -->
-                        <apex:outputPanel id="personaFisicaActividadEmpresarial">
+                        <apex:outputPanel id="personaFisicaActividadEmpresarial" rendered="{!Opp.Tipo_persona__c == 'Física con Actividad Empresarial'}">
                             <div id="personaFisicaActividadEmpresarial"> 
                                 <c:Panel title="Persona fisica con actividad empresarial">
                                     <div class="row">
@@ -92,56 +103,56 @@
                             </div>
                         </apex:outputPanel>
                         <!-- div persona moral -->
-                        <div id="personaMoral">
-                            <c:Panel title="Persona moral">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="ChecklistItem"> Contrato </div>
-                                        <div class="ChecklistItem"> Identificación </div>
-                                        <div class="ChecklistItem"> Comprobante de domicilio </div>
+                        <apex:outputPanel id="personaMoral" rendered="{!Opp.Tipo_persona__c == 'Moral'}">
+                            <div id="personaMoral">
+                                <c:Panel title="Persona moral">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="ChecklistItem"> Contrato </div>
+                                            <div class="ChecklistItem"> Identificación </div>
+                                            <div class="ChecklistItem"> Comprobante de domicilio </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.CaratulaContrato__c}"/></div>
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.IdentificacionOficial__c }"/></div>
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.ComprobanteDomicilio__c}"/></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="ChecklistItem"> Acta constitutiva </div>
+                                            <div class="ChecklistItem"> Poderes </div>
+                                            <div class="ChecklistItem"> Inscripción al SAT </div>
+                                            <div class="ChecklistItem"> Venta recuperada </div>
+                                            <div class="ChecklistItem"> No comisión </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.ActaConstitutiva__c}"/></div>
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.Poderes__c}"/></div>
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.VentaRecuperada__c}"/></div>
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.NoComision__c}"/></div>
+                                                <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.InscripcionSAT__c}"/></div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-1">
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.CaratulaContrato__c}"/></div>
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.IdentificacionOficial__c }"/></div>
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.ComprobanteDomicilio__c}"/></div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="ChecklistItem"> Comentarios expediente </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <apex:inputField value="{!Opp.ComentariosExpediente__c}" styleClass="form-control"/>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="ChecklistItem"> Acta constitutiva </div>
-                                        <div class="ChecklistItem"> Poderes </div>
-                                        <div class="ChecklistItem"> Inscripción al SAT </div>
-                                        <div class="ChecklistItem"> Venta recuperada </div>
-                                        <div class="ChecklistItem"> No comisión </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.ActaConstitutiva__c}"/></div>
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.Poderes__c}"/></div>
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.VentaRecuperada__c}"/></div>
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.NoComision__c}"/></div>
-                                            <div class="ChecklistItem"><apex:inputCheckbox required="true" value="{!Opp.InscripcionSAT__c}"/></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="ChecklistItem"> Comentarios expediente </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <apex:inputField value="{!Opp.ComentariosExpediente__c}" styleClass="form-control"/>
-                                    </div>
-                                </div>
-                            </c:Panel>
-                        </div>
+                                </c:Panel>
+                            </div>
+                        </apex:outputPanel>    
                     </c:Panel>
-
-                    <!-- componente de oportunidad perdida -->
-                    <c:WizardOpPerdidaComponent />
-
-                    <!-- componente de seguimiento -->
-                    <c:seguimiento />
-
-                    <!-- botón de guardar -->
-                    <!-- <apex:commandButton action="Guardar" value="" /> -->
                 </div>          
             </apex:outputPanel>
+
+            <!-- componente de oportunidad perdida -->
+            <c:WizardOpPerdidaComponent varOportunidad="{!Opp}"/>
+            <!-- componente de seguimiento -->
+            <c:seguimiento varAccion="{!Task}"/>
+            <!-- botón de guardar -->
+            <!-- <apex:commandButton action="" value="" /> -->
         </apex:form>    
     </div>
 </apex:component>
